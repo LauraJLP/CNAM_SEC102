@@ -1,3 +1,12 @@
+/**
+* \file dirutil.c
+* \author Laura Le Padellec
+* \date 4 April 2017
+* \brief Implementation of CNAM SEC102 List files in a directory
+*
+* Library functions used by the main application.
+*/
+
 #include <stdio.h>
 #include <windows.h>
 #include <tchar.h> 
@@ -7,9 +16,16 @@
 
 #include "dirutil.h"
 
-int writeNewDir
+/**
+* \brief append the string given to the directory name given, the data will be copied to the buffer indicated
+*
+* \param _In_	dir			input directory to copy to destDir
+* \param _In_	strToAdd	string to append to the destDir
+* \param _Out_	destDir		buffer containing <dir>\\<destDir>
+*/
+unsigned int writeNewDir
 (
-	char * dir,			/* input directory */
+	char * const dir,			/* input directory */
 	char * strToAdd,	/* string to append to dir name*/
 	char * destDir		/* output directory */
 )
@@ -39,11 +55,17 @@ int writeNewDir
 	return ERROR_SUCCESS;
 }
 
-int listDir(char * dir) 
+/**
+* \brief list the contents o the directory given
+*
+* \param _In_ dir	directory whose contents are to be displayed
+* \return ERROR_SUCCESS or error code indicating any error encountered
+*/
+unsigned int listDir(char * const dir) 
 {
 	WIN32_FIND_DATA		ffd;
 	LPWIN32_FIND_DATA	pFfd = &ffd;
-	TCHAR				destDir[MAX_PATH];
+	char				destDir[MAX_PATH];
 	HANDLE				hFind = INVALID_HANDLE_VALUE;
 	LARGE_INTEGER		filesize;
 	SYSTEMTIME			sysTime;
@@ -66,7 +88,7 @@ int listDir(char * dir)
 
 	while (FindNextFile(hFind, pFfd) != 0)
 	{
-		// this is a directory therefore recurse into the directory to print its info
+		// this is a directory 
 
 		if (pFfd->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
