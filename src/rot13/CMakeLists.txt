@@ -6,4 +6,4 @@ project (ROT13)
 
 SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/../bin) 
 
-add_executable (rot13 rot13.c rot13.h rotutil.c rotutil.h)
+add_executable (rot13 regutil.c regutil.h rot13.c rot13.h rotutil.c rotutil.h)
