@@ -8,4 +8,5 @@ cmake --build . --target dirlist
 cmake --build . --target proclist
 cmake --build . --target rot13
 cmake --build . --target httpclient
+cmake --build . --target wininetclient
 popd
